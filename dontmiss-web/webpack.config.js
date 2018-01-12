@@ -8,7 +8,7 @@ const paths = {
 };
 
 module.exports = {
-  entry: `${paths.SRC}/js/app.js`,
+  entry: `${paths.SRC}/js/index.js`,
   output: {
     path: paths.DIST,
     filename: 'app.bundle.js'
