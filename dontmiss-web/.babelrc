@@ -1,3 +1,16 @@
 {
-  "presets": ["env", "react"]
+  "presets": [
+    [
+      "env",
+      {
+        "targets": {
+          "browsers": [
+            "last 2 versions"
+          ]
+        }
+      }
+    ],
+    "react",
+    "stage-0"
+  ]
 }

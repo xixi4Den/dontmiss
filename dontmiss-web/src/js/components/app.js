@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Route, Link, withRouter } from 'react-router-dom';
 
@@ -6,7 +7,10 @@ import First from './first-component/first-component';
 import Second from './second-component/second-component';
 
 class App extends Component {
-  
+  static propTypes = {
+    user: PropTypes.object.isRequired
+  };
+
   render() {
     return (
       <div>
@@ -18,7 +22,6 @@ class App extends Component {
           <li><Link to='/second/nested2'>2</Link></li>
         </ul>
         {this.props.user.firstName ? <div>{this.props.user.firstName}</div> : null}
-        
         <Route path="/first" component={First} />
         <Route path="/second" component={Second} />
       </div>
@@ -30,7 +33,7 @@ function mapStateToProps(state) {
   return {
     user: state.user,
     info: state.info
-  }
+  };
 }
 
-export default withRouter(connect(mapStateToProps)(App))
+export default withRouter(connect(mapStateToProps)(App));

@@ -1,0 +1,7 @@
+{
+  "extends": "stylelint-config-recommended-scss",
+  "rules": {
+    "unit-whitelist": ["em", "rem", "px"],
+    "indentation": 2
+  }
+}

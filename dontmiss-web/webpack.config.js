@@ -1,6 +1,8 @@
 const path = require('path');
+const autoprefixer = require('autoprefixer');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const StyleLintPlugin = require('stylelint-webpack-plugin');
 
 const paths = {
   DIST: path.resolve(__dirname, 'dist'),
@@ -19,13 +21,35 @@ module.exports = {
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        use: ['babel-loader']
+        use: ['babel-loader', 'eslint-loader']
       },
       {
         test: /\.scss$/,
         use: ExtractTextPlugin.extract({
           fallback: 'style-loader',
-          use: ['css-loader', 'sass-loader']
+          use: [{
+            loader: 'css-loader',
+            options: {
+              sourceMap: true
+            }
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              plugins: [
+                autoprefixer({
+                  browsers: ['last 2 versions']
+                })
+              ],
+              sourceMap: true
+            }
+          },
+          {
+            loader: 'sass-loader',
+            options: {
+              sourceMap: true
+            }
+          }]
         })
       }
     ]
@@ -35,6 +59,7 @@ module.exports = {
       template: `${paths.SRC}/index.html`,
     }),
     new ExtractTextPlugin('styles.bundle.css'),
+    new StyleLintPlugin(),
   ],
   resolve: {
     extensions: ['.js', '.jsx']
@@ -42,5 +67,6 @@ module.exports = {
   devServer: {
     contentBase: paths.SRC,
     historyApiFallback: true
-  }
+  },
+  devtool: 'source-map'
 };
