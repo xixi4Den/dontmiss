@@ -11,7 +11,8 @@ module.exports = {
   entry: `${paths.SRC}/js/index.js`,
   output: {
     path: paths.DIST,
-    filename: 'app.bundle.js'
+    filename: 'app.bundle.js',
+    publicPath: '/'
   },
   module: {
     rules: [
@@ -35,10 +36,11 @@ module.exports = {
     }),
     new ExtractTextPlugin('styles.bundle.css'),
   ],
-  // resolve: {
-  //   extensions: ['.js', '.jsx']
-  // },
+  resolve: {
+    extensions: ['.js', '.jsx']
+  },
   devServer: {
     contentBase: paths.SRC,
-  },
+    historyApiFallback: true
+  }
 };
