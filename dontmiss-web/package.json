@@ -30,7 +30,7 @@
   },
   "scripts": {
     "build": "webpack",
-    "start": "webpack-dev-server"
+    "start": "webpack-dev-server --https"
   },
   "dependencies": {
     "babel-polyfill": "^6.26.0",

@@ -1,0 +1,12 @@
+{
+  "name": "dontmiss-scheduler",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+  },
+  "dependencies": {
+    "node-cron": "^1.2.1",
+    "vk-io": "^4.0.0-alpha.8"
+  }
+}
